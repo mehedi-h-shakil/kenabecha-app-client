@@ -1,7 +1,9 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const ProductCard = ({ mobile }) => {
   const {
+    _id,
     productName,
     resalePrice,
     originalPrice,
@@ -24,7 +26,9 @@ const ProductCard = ({ mobile }) => {
         <p>Location: {location}</p>
         <h2 className="font-semibold">Sellers Name: {sellerName}</h2>
         <div className="card-actions ">
-          <button className="btn btn-primary">Book Now</button>
+          <Link to={`/mobile/${_id}`}>
+            <button className="btn btn-primary">Details</button>
+          </Link>
         </div>
       </div>
     </div>
