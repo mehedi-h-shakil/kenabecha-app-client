@@ -54,7 +54,7 @@ const Banner = () => {
           </div>
         </div>
       </div>
-      <div>
+      <div className="flex justify-center items-center">
         <input
           type="text"
           placeholder="Search your device"

@@ -1,17 +1,38 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../../contexts/AuthProvider";
 
 const Navbar = () => {
+  const { user, logout } = useContext(AuthContext);
+  const handleLogout = () => {
+    logout()
+      .then(() => {})
+      .catch((err) => console.log(err));
+  };
   const menuItems = (
     <>
       <li>
-        <Link>Home</Link>
+        <Link to="/">Home</Link>
       </li>
       <li>
         <Link>About</Link>
       </li>
+      {user ? (
+        <>
+          <li>
+            <button onClick={handleLogout}>Sign Out</button>
+          </li>
+        </>
+      ) : (
+        <>
+          <li>
+            <Link to="/login">Sign In</Link>
+          </li>
+        </>
+      )}
     </>
   );
+
   return (
     <div className="navbar bg-base-100">
       <div className="navbar-start">
@@ -39,7 +60,9 @@ const Navbar = () => {
             {menuItems}
           </ul>
         </div>
-        <a className="btn btn-ghost normal-case text-xl">KenaBecha</a>
+        <Link to="/" className="btn btn-ghost normal-case text-xl">
+          KenaBecha
+        </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal p-0">{menuItems}</ul>
@@ -48,12 +71,19 @@ const Navbar = () => {
         <input
           type="text"
           placeholder="Search"
-          className="input input-bordered"
+          className="input input-bordered hidden lg:block"
         />
         <div className="ml-4">
           <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
             <div className="w-10 rounded-full">
-              <img src="https://placeimg.com/80/80/people" />
+              <img
+                src={
+                  user
+                    ? user?.photoURL
+                    : "https://cdn4.iconfinder.com/data/icons/small-n-flat/24/user-512.png"
+                }
+                alt=""
+              />
             </div>
           </label>
         </div>
