@@ -1,12 +1,15 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../contexts/AuthProvider";
 
 const Navbar = () => {
   const { user, logout } = useContext(AuthContext);
+  const navigate = useNavigate();
   const handleLogout = () => {
     logout()
-      .then(() => {})
+      .then(() => {
+        navigate("/");
+      })
       .catch((err) => console.log(err));
   };
   const menuItems = (
@@ -15,10 +18,13 @@ const Navbar = () => {
         <Link to="/">Home</Link>
       </li>
       <li>
-        <Link>About</Link>
+        <Link to="/blogs">Blogs</Link>
       </li>
       {user ? (
         <>
+          <li>
+            <Link to="/dashboard">Dashboard</Link>
+          </li>
           <li>
             <button onClick={handleLogout}>Sign Out</button>
           </li>

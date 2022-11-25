@@ -34,14 +34,26 @@ const Signup = () => {
         // console.log(imageData.data.display_url);
         createUser(data.email, data.password).then((result) => {
           console.log(result);
-          updateUserProfile(data.name, imageData.data.display_url).then(
-            (updateUser) => {
-              toast.success("User created successfully.");
-              navigate("/");
-            }
-          );
+          updateUserProfile(data.name, imageData.data.display_url).then(() => {
+            saveUser(data.email, data.name, data.role);
+            toast.success("User created successfully.");
+            navigate("/");
+          });
         });
       });
+  };
+
+  const saveUser = (email, name, role) => {
+    const user = { email: email, name: name, role: role };
+    fetch("http:localhost:5000/users", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(user),
+    })
+      .then((res) => res.json())
+      .then((err) => console.log(err));
   };
 
   return (
@@ -103,7 +115,6 @@ const Signup = () => {
                   Buyer
                 </option>
                 <option value="seller">Seller</option>
-                <option value="admin">Admin</option>
               </select>
             </div>
             <div className="form-control">
