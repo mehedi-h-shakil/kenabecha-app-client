@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from "react";
-import { useLoaderData } from "react-router-dom";
 
-const AllBuyers = () => {
+const AllSellers = () => {
   const [users, setUsers] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/dashboard/users/buyers")
+    fetch("http://localhost:5000/dashboard/users/sellers")
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
         setUsers(data);
       });
   }, []);
+
   return (
     <div>
-      <h2 className="text-3xl mb-4">All Buyers</h2>
+      <h2 className="text-3xl mb-4">All Sellers</h2>
       <div className="overflow-x-auto">
         <table className="table w-full">
           <thead>
@@ -42,4 +42,4 @@ const AllBuyers = () => {
   );
 };
 
-export default AllBuyers;
+export default AllSellers;

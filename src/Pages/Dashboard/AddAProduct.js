@@ -12,34 +12,36 @@ const AddAProduct = () => {
     <div>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="card-body w-96 lg:w-[450px]"
+        className="card-body w-96 lg:w-[800px]"
       >
-        <div className="form-control">
-          <label className="label">
-            <span className="label-text">Phone Company</span>
-          </label>
-          <select
-            {...register("company")}
-            name="company"
-            placeholder="Phone Company"
-            className="select select-success w-full max-w-xs"
-          >
-            <option value="Apple">Apple</option>
-            <option value="Samsung">Samsung</option>
-            <option value="Xioami">Xioami</option>
-          </select>
-        </div>
-        <div className="form-control">
-          <label className="label">
-            <span className="label-text">Product Name</span>
-          </label>
-          <input
-            {...register("name")}
-            type="text"
-            name="name"
-            placeholder="Product Name"
-            className="input input-bordered"
-          />
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div className="form-control">
+            <label className="label">
+              <span className="label-text">Phone Company</span>
+            </label>
+            <select
+              {...register("company")}
+              name="company"
+              placeholder="Phone Company"
+              className="select select-success w-full max-w-xs"
+            >
+              <option value="Apple">Apple</option>
+              <option value="Samsung">Samsung</option>
+              <option value="Xioami">Xioami</option>
+            </select>
+          </div>
+          <div className="form-control">
+            <label className="label">
+              <span className="label-text">Product Name</span>
+            </label>
+            <input
+              {...register("name")}
+              type="text"
+              name="name"
+              placeholder="Product Name"
+              className="input input-bordered"
+            />
+          </div>
         </div>
 
         <div className="form-control">
@@ -62,7 +64,7 @@ const AddAProduct = () => {
             {...register("condition")}
             name="conditon"
             placeholder="Conditon"
-            className="select select-success w-full max-w-xs"
+            className="select select-success w-full "
           >
             <option value="Excellent">Excellent</option>
             <option value="Good">Good</option>
@@ -106,41 +108,46 @@ const AddAProduct = () => {
             className="textarea textarea-bordered"
           />
         </div>
-        <div lassName="form-control">
-          <label className="label">
-            <span className="label-text">Brought Price</span>
-          </label>
-          <input
-            {...register("broughtPrice")}
-            type="text"
-            name="broughtPrice"
-            placeholder="Brought Price"
-            className="input input-bordered"
-          />
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+          <div lassName="form-control">
+            <label className="label">
+              <span className="label-text">Brought Price</span>
+            </label>
+            <input
+              {...register("broughtPrice")}
+              type="text"
+              name="broughtPrice"
+              placeholder="Brought Price"
+              className="input input-bordered w-full"
+            />
+          </div>
+          <div lassName="form-control">
+            <label className="label">
+              <span className="label-text">Year of Purchase</span>
+            </label>
+            <input
+              {...register("purchaseYear")}
+              type="text"
+              name="purchaseYear"
+              placeholder="Brought Price"
+              className="input input-bordered w-full"
+            />
+          </div>
+          <div lassName="form-control">
+            <label className="label">
+              <span className="label-text">Used</span>
+            </label>
+            <input
+              {...register("used")}
+              type="text"
+              name="used"
+              placeholder="Used Time"
+              className="input input-bordered w-full"
+            />
+          </div>
         </div>
-        <div lassName="form-control">
-          <label className="label">
-            <span className="label-text">Year of Purchase</span>
-          </label>
-          <input
-            {...register("purchaseYear")}
-            type="text"
-            name="purchaseYear"
-            placeholder="Brought Price"
-            className="input input-bordered"
-          />
-        </div>
-        <div lassName="form-control">
-          <label className="label">
-            <span className="label-text">Used</span>
-          </label>
-          <input
-            {...register("used")}
-            type="text"
-            name="used"
-            placeholder="Used Time"
-            className="input input-bordered"
-          />
+        <div className="mt-2 flex justify-center">
+          <button className="btn btn-success w-full">Submit</button>
         </div>
       </form>
     </div>

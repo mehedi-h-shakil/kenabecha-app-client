@@ -36,10 +36,10 @@ const DashboardLayout = () => {
             {isRole === "Admin" && (
               <>
                 <li>
-                  <Link to="/dashboard/allBuyers">All Buyers</Link>
+                  <Link to="/dashboard/users/allBuyers">All Buyers</Link>
                 </li>
                 <li>
-                  <Link to="/dashboard/allSellers">All Sellers</Link>
+                  <Link to="/dashboard/users/allSellers">All Sellers</Link>
                 </li>
                 <li>
                   <Link to="/dashboard/reportedItems">Reported Items</Link>
@@ -47,7 +47,7 @@ const DashboardLayout = () => {
               </>
             )}
 
-            {isRole === "Sellers" && (
+            {isRole === "Seller" && (
               <>
                 <li>
                   <Link>My Products</Link>
