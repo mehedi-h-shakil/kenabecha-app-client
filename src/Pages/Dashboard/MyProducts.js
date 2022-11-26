@@ -1,11 +1,16 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { AuthContext } from "../../contexts/AuthProvider";
 import { useQuery } from "@tanstack/react-query";
 import Spinner from "../Home/components/Spinner/Spinner";
+import toast from "react-hot-toast";
 
 const MyProducts = () => {
   const { user } = useContext(AuthContext);
-  const { data: products, isLoading } = useQuery({
+  const {
+    data: products,
+    isLoading,
+    refetch,
+  } = useQuery({
     queryKey: ["products"],
     queryFn: async () => {
       const res = await fetch(
@@ -15,6 +20,23 @@ const MyProducts = () => {
       return data;
     },
   });
+
+  const handleDelete = (productId) => {
+    const id = productId;
+    console.log(id);
+    fetch(`http://localhost:5000/myProducts`, {
+      method: "DELETE",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({ id }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        toast.success("Item Deleted");
+        refetch();
+      });
+  };
 
   if (isLoading) {
     return <Spinner />;
@@ -46,7 +68,12 @@ const MyProducts = () => {
                   <button className="btn btn-success">Add</button>
                 </td>
                 <td>
-                  <button className="btn">Delete</button>
+                  <button
+                    onClick={() => handleDelete(product?._id)}
+                    className="btn"
+                  >
+                    Delete
+                  </button>
                 </td>
               </tr>
             ))}
