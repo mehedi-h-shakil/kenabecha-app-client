@@ -1,15 +1,50 @@
-import React, { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import React from "react";
+import toast from "react-hot-toast";
+import Spinner from "../Home/components/Spinner/Spinner";
 
 const AllBuyers = () => {
-  const [users, setUsers] = useState([]);
-  useEffect(() => {
-    fetch("http://localhost:5000/dashboard/users/buyers")
+  const {
+    data: users,
+    isLoading,
+    refetch,
+  } = useQuery({
+    queryKey: ["users"],
+    queryFn: async () => {
+      const res = await fetch("http://localhost:5000/buyers");
+      const data = await res.json();
+      return data;
+    },
+  });
+  // useEffect(() => {
+  //   fetch("http://localhost:5000/dashboard/users/buyers")
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       console.log(data);
+  //       setUsers(data);
+  //     });
+  // }, []);
+
+  const handleDelete = (productId) => {
+    const id = productId;
+    console.log(id);
+    fetch(`http://localhost:5000/buyers`, {
+      method: "DELETE",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({ id }),
+    })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
-        setUsers(data);
+        toast.success("User Deleted");
+        refetch();
       });
-  }, []);
+  };
+
+  if (isLoading) {
+    return <Spinner />;
+  }
   return (
     <div>
       <h2 className="text-3xl mb-4">All Buyers</h2>
@@ -30,7 +65,12 @@ const AllBuyers = () => {
                 <td>{user?.name}</td>
                 <td>{user?.email}</td>
                 <td>
-                  <button className="btn">Delete</button>
+                  <button
+                    onClick={() => handleDelete(user?._id)}
+                    className="btn"
+                  >
+                    Delete
+                  </button>
                 </td>
               </tr>
             ))}
