@@ -67,6 +67,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
+    errorElement: <Error />,
     element: (
       <PrivateRoute>
         <DashboardLayout />
@@ -82,13 +83,19 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "/dashboard/wishlist/",
-        element: (
-          <BuyerRoute>
-            <WishList />
-          </BuyerRoute>
-        ),
+        path: "/dashboard/wishlist",
+        element: <WishList />,
       },
+      // {
+      //   path: "/dashboard/dashboard/wishlist/:id",
+      //   loader: ({ params }) =>
+      //     fetch(`http://localhost:5000/wishlist/${params.id}`),
+      //   element: (
+      //     <BuyerRoute>
+      //       <WishList />
+      //     </BuyerRoute>
+      //   ),
+      // },
       {
         path: "/dashboard/users/allSellers",
         element: (

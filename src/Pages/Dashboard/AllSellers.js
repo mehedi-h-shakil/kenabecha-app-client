@@ -17,6 +17,16 @@ const AllSellers = () => {
     },
   });
 
+  const handleVerify = (email) => {
+    fetch("http://localhost:5000/sellers", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({ email }),
+    });
+  };
+
   const handleDelete = (productId) => {
     const id = productId;
     fetch(`http://localhost:5000/sellers`, {
@@ -58,7 +68,12 @@ const AllSellers = () => {
                 <td>{user?.name}</td>
                 <td>{user?.email}</td>
                 <td>
-                  <button className="btn btn-success">Verify</button>
+                  <button
+                    onClick={() => handleVerify(user?.email)}
+                    className="btn btn-success"
+                  >
+                    Verify
+                  </button>
                 </td>
                 <td>
                   <button

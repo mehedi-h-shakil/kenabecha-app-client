@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../../../contexts/AuthProvider";
 
 const ProductCard = ({ mobile }) => {
+  const { user } = useContext(AuthContext);
   const {
     _id,
     productName,
@@ -12,6 +14,22 @@ const ProductCard = ({ mobile }) => {
     location,
     sellerName,
   } = mobile;
+
+  const handleWishList = (id) => {
+    const wishData = {
+      user: user?.email,
+      id,
+    };
+    fetch("http://localhost:5000/wishlist", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(wishData),
+    })
+      .then((res) => res.json())
+      .then((data) => console.log(data));
+  };
   return (
     <div className="card card-side bg-base-100 shadow-xl">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
@@ -35,9 +53,12 @@ const ProductCard = ({ mobile }) => {
               </Link>
             </div>
             <div className="card-actions ">
-              <Link to={`/dashboard/wishlist/${_id}`}>
-                <button className="btn btn-primary">WishList</button>
-              </Link>
+              <button
+                onClick={() => handleWishList(_id)}
+                className="btn btn-primary"
+              >
+                WishList
+              </button>
             </div>
           </div>
         </div>

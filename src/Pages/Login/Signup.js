@@ -123,10 +123,10 @@ const Signup = () => {
                 id=""
                 className="select select-success"
               >
-                <option selected value="buyer">
+                <option selected value="Buyer">
                   Buyer
                 </option>
-                <option value="seller">Seller</option>
+                <option value="Seller">Seller</option>
               </select>
             </div>
             <div className="form-control">
