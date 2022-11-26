@@ -1,8 +1,10 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider";
 import toast from "react-hot-toast";
+import useToken from "../../hooks/useToken";
+import SocialLogin from "./SocialLogin";
 const Signup = () => {
   const {
     register,
@@ -12,7 +14,15 @@ const Signup = () => {
 
   const { createUser, updateUserProfile } = useContext(AuthContext);
 
+  const [createUserEmail, setCreatedUserEmail] = useState("");
+  const [token] = useToken(createUserEmail);
+  const [signupError, setSignupError] = useState("");
+
   const navigate = useNavigate();
+
+  if (token) {
+    navigate("/");
+  }
 
   const onSubmit = (data) => {
     console.log(data);
@@ -23,7 +33,7 @@ const Signup = () => {
     formData.append("image", image);
 
     const url = `https://api.imgbb.com/1/upload?expiration=600&key=f06ccb150c5df3e1705f9b6bc41df79b`;
-    console.log(url);
+    // console.log(url);
 
     fetch(url, {
       method: "POST",
@@ -37,7 +47,6 @@ const Signup = () => {
           updateUserProfile(data.name, imageData.data.display_url).then(() => {
             saveUser(data.email, data.name, data.role);
             toast.success("User created successfully.");
-            navigate("/");
           });
         });
       });
@@ -45,7 +54,7 @@ const Signup = () => {
 
   const saveUser = (email, name, role) => {
     const user = { email: email, name: name, role: role };
-    console.log(user);
+    // console.log(user);
     fetch("http://localhost:5000/users", {
       method: "POST",
       headers: {
@@ -54,7 +63,9 @@ const Signup = () => {
       body: JSON.stringify(user),
     })
       .then((res) => res.json())
-      .then((err) => console.log(err));
+      .then((data) => {
+        setCreatedUserEmail(email);
+      });
   };
 
   return (
@@ -137,7 +148,11 @@ const Signup = () => {
                   </Link>
                 </p>
               </label>
+              {errors.password && (
+                <p className="text-red-600">{errors.password?.message}</p>
+              )}
             </div>
+
             <div className="form-control mt-6">
               <button
                 type="submit"
@@ -146,7 +161,14 @@ const Signup = () => {
                 Sign Up
               </button>
             </div>
+            <div>
+              {signupError && (
+                <p className="text-center text-red-600">{signupError}</p>
+              )}
+            </div>
           </form>
+          <div className="divider">OR</div>
+          <SocialLogin setSignupError={setSignupError}></SocialLogin>
         </div>
       </div>
     </div>

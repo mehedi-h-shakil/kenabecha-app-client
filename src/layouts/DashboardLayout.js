@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import { Link, Outlet } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthProvider";
 import useRole from "../hooks/useRole";
-import Navbar from "../Pages/Shared/Navbar/Navbar";
 
 const DashboardLayout = () => {
   const { user } = useContext(AuthContext);
@@ -10,13 +9,16 @@ const DashboardLayout = () => {
   console.log(isRole);
   return (
     <div>
-      <Navbar></Navbar>
+      <div className="text-4xl flex justify-center">
+        <h2>Welcome to Dashboard</h2>
+      </div>
       <div className="drawer drawer-mobile">
         <input
           id="dashboard-drawer"
           type="checkbox"
           className="drawer-toggle"
         />
+
         <div className="drawer-content ">
           <Outlet></Outlet>
         </div>
@@ -24,12 +26,16 @@ const DashboardLayout = () => {
           <label htmlFor="dashboard-drawer" className="drawer-overlay"></label>
           <ul className="menu p-4 w-80 text-base-content">
             <li>
-              <Link to="/dashboard">Dashboard</Link>
+              <Link to="/">Home</Link>
             </li>
+
             {isRole === "Buyer" && (
               <>
                 <li>
                   <Link to="dashboard/myOrders">My Order</Link>
+                </li>
+                <li>
+                  <Link to="/dashboard/wishlist">Wish List</Link>
                 </li>
               </>
             )}
@@ -41,16 +47,13 @@ const DashboardLayout = () => {
                 <li>
                   <Link to="/dashboard/users/allSellers">All Sellers</Link>
                 </li>
-                <li>
-                  <Link to="/dashboard/reportedItems">Reported Items</Link>
-                </li>
               </>
             )}
 
             {isRole === "Seller" && (
               <>
                 <li>
-                  <Link>My Products</Link>
+                  <Link to="/dashboard/myProducts">My Products</Link>
                 </li>
                 <li>
                   <Link>My Buyers</Link>

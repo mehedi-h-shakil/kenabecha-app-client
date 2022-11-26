@@ -6,6 +6,9 @@ import AddAProduct from "../Pages/Dashboard/AddAProduct";
 import AllBuyers from "../Pages/Dashboard/AllBuyers";
 import AllSellers from "../Pages/Dashboard/AllSellers";
 import MyOrders from "../Pages/Dashboard/MyOrders";
+import MyProducts from "../Pages/Dashboard/MyProducts";
+import Payment from "../Pages/Dashboard/Payment/Payment";
+import WishList from "../Pages/Dashboard/WishList";
 import Error from "../Pages/Error/Error";
 import Blogs from "../Pages/Home/Blogs";
 import ProductDetails from "../Pages/Home/components/Product/ProductDetails";
@@ -42,13 +45,21 @@ const router = createBrowserRouter([
       },
       {
         path: "/categories/:name",
-        element: <ProductList />,
+        element: (
+          <PrivateRoute>
+            <ProductList />
+          </PrivateRoute>
+        ),
         loader: ({ params }) =>
           fetch(`http://localhost:5000/categories/${params.name}`),
       },
       {
         path: "/mobile/:id",
-        element: <ProductDetails />,
+        element: (
+          <PrivateRoute>
+            <ProductDetails />
+          </PrivateRoute>
+        ),
         loader: ({ params }) =>
           fetch(`http://localhost:5000/mobile/${params.id}`),
       },
@@ -63,10 +74,18 @@ const router = createBrowserRouter([
     ),
     children: [
       {
-        path: "/dashboard/myOrders",
+        path: "dashboard/myOrders",
         element: (
           <BuyerRoute>
             <MyOrders />
+          </BuyerRoute>
+        ),
+      },
+      {
+        path: "/dashboard/wishlist/:id",
+        element: (
+          <BuyerRoute>
+            <WishList />
           </BuyerRoute>
         ),
       },
@@ -92,6 +111,24 @@ const router = createBrowserRouter([
           <SellerRoute>
             <AddAProduct />
           </SellerRoute>
+        ),
+      },
+      {
+        path: "/dashboard/myProducts",
+        element: (
+          <SellerRoute>
+            <MyProducts />
+          </SellerRoute>
+        ),
+      },
+      {
+        path: "/dashboard/payment/:id",
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/bookings/${params.id}`),
+        element: (
+          <BuyerRoute>
+            <Payment />,
+          </BuyerRoute>
         ),
       },
     ],

@@ -25,10 +25,17 @@ const ProductCard = ({ mobile }) => {
         <p>Posted: </p>
         <p>Location: {location}</p>
         <h2 className="font-semibold">Sellers Name: {sellerName}</h2>
-        <div className="card-actions ">
-          <Link to={`/mobile/${_id}`}>
-            <button className="btn btn-primary">Details</button>
-          </Link>
+        <div className="flex gap-5">
+          <div className="card-actions ">
+            <Link to={`/mobile/${_id}`}>
+              <button className="btn btn-primary">Details</button>
+            </Link>
+          </div>
+          <div className="card-actions ">
+            <Link to={`/dashboard/wishlist/${_id}`}>
+              <button className="btn btn-primary">WishList</button>
+            </Link>
+          </div>
         </div>
       </div>
     </div>

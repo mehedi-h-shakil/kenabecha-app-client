@@ -21,7 +21,8 @@ const AllSellers = () => {
               <th></th>
               <th>Name</th>
               <th>Email</th>
-              <th>Delte</th>
+              <th></th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -30,6 +31,9 @@ const AllSellers = () => {
                 <th>{index + 1}</th>
                 <td>{user?.name}</td>
                 <td>{user?.email}</td>
+                <td>
+                  <button className="btn btn-success">Verify</button>
+                </td>
                 <td>
                   <button className="btn">Delete</button>
                 </td>

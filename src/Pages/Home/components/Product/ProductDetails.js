@@ -13,7 +13,7 @@ const ProductDetails = () => {
     location,
     sellerName,
   } = data;
-  console.log(data);
+  console.log(data?.date);
   return (
     <div className="w-9/12 mx-auto mt-28 grid grid-cols-1 lg:grid-cols-2 gap-6">
       <div>
@@ -27,12 +27,13 @@ const ProductDetails = () => {
           <p className="text-xl mt-5">Original Price: {originalPrice}</p>
           <p className="text-xl mt-5">Used: {used} years</p>
           <p className="text-xl mt-5">Location: {location}</p>
+          <p className="text-xl mt-5">Posted Time: {data?.date}</p>
           <h2 className="text-2xl font-semibold mt-5">
             Seller Name: {sellerName}
           </h2>
         </div>
         <label htmlFor="my-modal" className="btn btn-success mt-20">
-          open modal
+          Book Now
         </label>
       </div>
       <BookModal data={data} />

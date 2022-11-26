@@ -1,12 +1,73 @@
 import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../contexts/AuthProvider";
+import { useQuery } from "@tanstack/react-query";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const AddAProduct = () => {
   const { user } = useContext(AuthContext);
   const { register, handleSubmit } = useForm();
+  // const { data, isLoading } = useQuery();
+  const navigate = useNavigate();
+
+  const date = new Date();
+
   const onSubmit = (data) => {
     console.log(data);
+    console.log(date);
+
+    const image = data.image[0];
+    // console.log(image);
+
+    const formData = new FormData();
+    formData.append("image", image);
+
+    const url = `https://api.imgbb.com/1/upload?expiration=600&key=f06ccb150c5df3e1705f9b6bc41df79b`;
+    console.log(url);
+
+    fetch(url, {
+      method: "POST",
+      body: formData,
+    })
+      .then((res) => res.json())
+      .then((imageData) => {
+        const product = {
+          productName: data.name,
+          image: imageData.data.display_url,
+          company: data.company,
+          resalePrice: data.resalePrice,
+          condition: data.condition,
+          mobile: data.number,
+          location: data.location,
+          description: data.description,
+          originalPrice: data.broughtPrice,
+          purchaseYear: data.purchaseYear,
+          used: data.used,
+          date: date,
+          sellerEmail: user?.email,
+          sellerName: user?.displayName,
+        };
+        // console.log(product);
+        saveProduct(product);
+      });
+  };
+
+  const saveProduct = (product) => {
+    console.log(product);
+    fetch("http://localhost:5000/addProducts", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(product),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        toast.success("Product added successfully.");
+        navigate("/dashboard/myProducts");
+      });
   };
   return (
     <div>
@@ -54,6 +115,19 @@ const AddAProduct = () => {
             name="resalePrice"
             placeholder="Resale Price"
             className="input input-bordered"
+          />
+        </div>
+        <div className="form-control">
+          <label className="label">
+            <span className="label-text">Mobile Photo</span>
+          </label>
+          <input
+            {...register("image")}
+            type="file"
+            name="image"
+            accept="image/*"
+            placeholder="Mobile Photo"
+            className="file-input file-input-bordered file-input-success w-full "
           />
         </div>
         <div className="form-control">

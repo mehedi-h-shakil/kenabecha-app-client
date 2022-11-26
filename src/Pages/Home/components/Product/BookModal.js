@@ -1,22 +1,63 @@
 import React, { useContext } from "react";
-import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../../contexts/AuthProvider";
+import toast from "react-hot-toast";
+
+const axios = require("axios");
 
 const BookModal = ({ data }) => {
-  const { register, handleSubmit } = useForm();
   const { user } = useContext(AuthContext);
-  const {
-    productName,
-    resalePrice,
-    originalPrice,
-    used,
-    image,
-    location,
-    sellerName,
-  } = data;
+  const { productName, resalePrice, image } = data;
+  console.log(data);
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const navigate = useNavigate();
+
+  const handleBook = async (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const name = user?.displayName;
+    const email = user?.email;
+    const product = productName;
+    const price = resalePrice;
+    const meetLocation = form.location.value;
+    const contact = form.contact.value;
+
+    const bookedData = {
+      buyerName: name,
+      buyerEmail: email,
+      bookedProduct: product,
+      price: price,
+      location: meetLocation,
+      contact: contact,
+      image,
+    };
+    console.log(name, email, product, price, meetLocation, contact, data?._id);
+
+    // axios
+    //   .post(`http://localhost:5000/bookings/${data?._id}`, bookedData)
+    //   .then((data) => {
+    //     console.log(data);
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
+    fetch(`http://localhost:5000/bookings/${data?._id}`, {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(bookedData),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.matchedCount === 1) {
+          toast.error("This is item is booked alreay.");
+          return;
+        }
+        toast.success("Item is Booked");
+        navigate("/dashboard/dashboard/myOrders");
+      });
   };
   return (
     <div>
@@ -28,21 +69,16 @@ const BookModal = ({ data }) => {
             Congratulations random Internet user!
           </h3>
           <div className="py-4">
-            <form
-              onSubmit={handleSubmit(onSubmit)}
-              className="card-body w-96 lg:w-[450px]"
-            >
+            <form onSubmit={handleBook} className="card-body w-96 lg:w-[450px]">
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Name</span>
                 </label>
                 <input
-                  {...register("name")}
                   type="text"
                   name="name"
                   disabled
-                  value={user?.displayName}
-                  placeholder={user?.displayName}
+                  defaultValue={user?.displayName}
                   className="input input-bordered"
                 />
               </div>
@@ -51,11 +87,10 @@ const BookModal = ({ data }) => {
                   <span className="label-text">Email</span>
                 </label>
                 <input
-                  {...register("email")}
                   type="email"
                   name="email"
                   disabled
-                  value={user?.email}
+                  defaultValue={user?.email}
                   placeholder={user?.email}
                   className="input input-bordered"
                 />
@@ -65,12 +100,10 @@ const BookModal = ({ data }) => {
                   <span className="label-text">Item Name</span>
                 </label>
                 <input
-                  {...register("itemName")}
                   type="text"
                   name="itemName"
                   disabled
                   defaultValue={productName}
-                  placeholder={productName}
                   className="input input-bordered input-success"
                 />
               </div>
@@ -80,12 +113,10 @@ const BookModal = ({ data }) => {
                   <span className="label-text">Price</span>
                 </label>
                 <input
-                  {...register("price")}
                   type="text"
                   name="price"
                   disabled
-                  value={resalePrice}
-                  placeholder={resalePrice}
+                  defaultValue={resalePrice}
                   className="input input-bordered"
                 />
               </div>
@@ -94,7 +125,6 @@ const BookModal = ({ data }) => {
                   <span className="label-text">Contact</span>
                 </label>
                 <input
-                  {...register("contact")}
                   type="text"
                   name="contact"
                   placeholder="Your Contact Number"
@@ -106,19 +136,16 @@ const BookModal = ({ data }) => {
                   <span className="label-text">Location</span>
                 </label>
                 <input
-                  {...register("location")}
                   type="text"
                   name="location"
                   placeholder="Meeting Location"
                   className="input input-bordered"
                 />
               </div>
+              <button type="submit" className="btn">
+                Book
+              </button>
             </form>
-          </div>
-          <div className="modal-action">
-            <label htmlFor="my-modal" className="btn">
-              Yay!
-            </label>
           </div>
         </div>
       </div>
