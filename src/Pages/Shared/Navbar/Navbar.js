@@ -10,7 +10,7 @@ const Navbar = () => {
       .then(() => {
         navigate("/");
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {});
   };
   const menuItems = (
     <>

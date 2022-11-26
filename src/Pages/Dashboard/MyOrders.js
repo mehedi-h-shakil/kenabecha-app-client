@@ -14,7 +14,7 @@ const MyOrders = () => {
     },
   });
 
-  console.log(orders);
+  // console.log(orders);
 
   return (
     <div>

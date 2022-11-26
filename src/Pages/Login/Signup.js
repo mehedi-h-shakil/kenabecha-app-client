@@ -25,7 +25,7 @@ const Signup = () => {
   }
 
   const onSubmit = (data) => {
-    console.log(data);
+    // console.log(data);
     const image = data.image[0];
     // console.log(image);
 

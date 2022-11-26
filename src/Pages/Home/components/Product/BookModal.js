@@ -8,7 +8,7 @@ import toast from "react-hot-toast";
 const BookModal = ({ data }) => {
   const { user } = useContext(AuthContext);
   const { productName, resalePrice, image } = data;
-  console.log(data);
+  // console.log(data);
 
   const navigate = useNavigate();
 
@@ -32,7 +32,7 @@ const BookModal = ({ data }) => {
       image,
       mobileId: data?._id,
     };
-    console.log(name, email, product, price, meetLocation, contact, data?._id);
+    // console.log(name, email, product, price, meetLocation, contact, data?._id);
 
     // axios
     //   .post(`http://localhost:5000/bookings/${data?._id}`, bookedData)
@@ -51,7 +51,7 @@ const BookModal = ({ data }) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         if (data.matchedCount === 1) {
           toast.error("This is item is booked alreay.");
           return;

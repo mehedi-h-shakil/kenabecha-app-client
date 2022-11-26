@@ -27,7 +27,7 @@ const AllBuyers = () => {
 
   const handleDelete = (productId) => {
     const id = productId;
-    console.log(id);
+    // console.log(id);
     fetch(`http://localhost:5000/buyers`, {
       method: "DELETE",
       headers: {

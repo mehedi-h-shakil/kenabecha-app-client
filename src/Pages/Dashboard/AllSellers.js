@@ -24,7 +24,11 @@ const AllSellers = () => {
         "content-type": "application/json",
       },
       body: JSON.stringify({ email }),
-    });
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        toast.success("Seller Verified");
+      });
   };
 
   const handleDelete = (productId) => {
@@ -68,12 +72,18 @@ const AllSellers = () => {
                 <td>{user?.name}</td>
                 <td>{user?.email}</td>
                 <td>
-                  <button
-                    onClick={() => handleVerify(user?.email)}
-                    className="btn btn-success"
-                  >
-                    Verify
-                  </button>
+                  {!user?.verified && (
+                    <button
+                      onClick={() => handleVerify(user?.email)}
+                      className="btn btn-success"
+                    >
+                      Verify
+                    </button>
+                  )}
+
+                  {user?.verified && (
+                    <span className="text-green-500">Verified</span>
+                  )}
                 </td>
                 <td>
                   <button

@@ -8,9 +8,9 @@ const useRole = (email) => {
     fetch(`http://localhost:5000/users/role/${email}`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         setIsRole(data.isRole);
-        console.log(isRole);
+        // console.log(isRole);
         setIsRoleLoading(false);
       });
   }, [email, isRole]);

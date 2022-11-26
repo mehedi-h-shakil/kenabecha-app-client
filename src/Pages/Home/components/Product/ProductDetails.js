@@ -13,7 +13,7 @@ const ProductDetails = () => {
     location,
     sellerName,
   } = data;
-  console.log(data?.date);
+  // console.log(data?.date);
   return (
     <div className="w-9/12 mx-auto mt-28 grid grid-cols-1 lg:grid-cols-2 gap-6">
       <div>

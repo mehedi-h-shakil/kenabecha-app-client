@@ -5,6 +5,7 @@ import Spinner from "../Home/components/Spinner/Spinner";
 import toast from "react-hot-toast";
 
 const MyProducts = () => {
+  const date = new Date();
   const { user } = useContext(AuthContext);
   const {
     data: products,
@@ -23,7 +24,7 @@ const MyProducts = () => {
 
   const handleDelete = (productId) => {
     const id = productId;
-    console.log(id);
+    // console.log(id);
     fetch(`http://localhost:5000/myProducts`, {
       method: "DELETE",
       headers: {
@@ -35,6 +36,20 @@ const MyProducts = () => {
       .then((data) => {
         toast.success("Item Deleted");
         refetch();
+      });
+  };
+
+  const handleAds = (id) => {
+    fetch("http://localhost:5000/advertise", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({ id, date }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        toast.success("Advertisement Successfull");
       });
   };
 
@@ -65,7 +80,12 @@ const MyProducts = () => {
                 <td>{product?.productName}</td>
                 <td>Available</td>
                 <td>
-                  <button className="btn btn-success">Add</button>
+                  <button
+                    onClick={() => handleAds(product?._id)}
+                    className="btn btn-success"
+                  >
+                    Add
+                  </button>
                 </td>
                 <td>
                   <button

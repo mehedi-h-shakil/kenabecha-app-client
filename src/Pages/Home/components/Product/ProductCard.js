@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../../contexts/AuthProvider";
 
@@ -28,7 +29,7 @@ const ProductCard = ({ mobile }) => {
       body: JSON.stringify(wishData),
     })
       .then((res) => res.json())
-      .then((data) => console.log(data));
+      .then((data) => toast.success("Added to Wishlist"));
   };
   return (
     <div className="card card-side bg-base-100 shadow-xl">

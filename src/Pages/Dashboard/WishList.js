@@ -17,7 +17,7 @@ const WishList = () => {
   // console.log(wishlists.result);
 
   const handleDelete = (id) => {
-    console.log(id);
+    // console.log(id);
     fetch("http://localhost:5000/wishlist", {
       method: "DELETE",
       headers: {
@@ -27,7 +27,7 @@ const WishList = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         toast.success("Item Deleted");
         refetch();
       });

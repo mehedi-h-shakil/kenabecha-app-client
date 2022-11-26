@@ -14,8 +14,8 @@ const AddAProduct = () => {
   const date = new Date();
 
   const onSubmit = (data) => {
-    console.log(data);
-    console.log(date);
+    // console.log(data);
+    // console.log(date);
 
     const image = data.image[0];
     // console.log(image);
@@ -24,7 +24,7 @@ const AddAProduct = () => {
     formData.append("image", image);
 
     const url = `https://api.imgbb.com/1/upload?expiration=600&key=f06ccb150c5df3e1705f9b6bc41df79b`;
-    console.log(url);
+    // console.log(url);
 
     fetch(url, {
       method: "POST",
@@ -54,7 +54,7 @@ const AddAProduct = () => {
   };
 
   const saveProduct = (product) => {
-    console.log(product);
+    // console.log(product);
     fetch("http://localhost:5000/addProducts", {
       method: "POST",
       headers: {
@@ -64,7 +64,7 @@ const AddAProduct = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         toast.success("Product added successfully.");
         navigate("/dashboard/myProducts");
       });
@@ -183,7 +183,7 @@ const AddAProduct = () => {
           />
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-          <div lassName="form-control">
+          <div className="form-control">
             <label className="label">
               <span className="label-text">Brought Price</span>
             </label>

@@ -40,16 +40,16 @@ const Checkout = ({ paymentData }) => {
       return;
     }
 
-    const { error, paymentMethod } = await stripe.createPaymentMethod({
+    const { error } = await stripe.createPaymentMethod({
       type: "card",
       card,
     });
 
     if (error) {
-      console.log("[error]", error);
+      // console.log("[error]", error);
       setCardError(error.message);
     } else {
-      console.log("[PaymentMethod]", paymentMethod);
+      // console.log("[PaymentMethod]", paymentMethod);
       setCardError("");
     }
 
@@ -73,7 +73,7 @@ const Checkout = ({ paymentData }) => {
     }
 
     if (paymentIntent.status === "succeeded") {
-      console.log("card info", card);
+      // console.log("card info", card);
       setSuccess("Congrats! Your payment completed");
       setTransactionId(paymentIntent.id);
 
@@ -95,7 +95,7 @@ const Checkout = ({ paymentData }) => {
       })
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
+          // console.log(data);
           if (data.insertedId) {
             setSuccess("Congrats! your payment completed");
             setTransactionId(paymentIntent.id);

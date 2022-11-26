@@ -29,7 +29,7 @@ const Login = () => {
   }
 
   const onSubmit = (data) => {
-    console.log(data);
+    // console.log(data);
     login(data.email, data.password)
       .then((result) => {
         // console.log(result.user);
@@ -39,7 +39,7 @@ const Login = () => {
 
         navigate(from, { replace: true });
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {});
   };
   return (
     <div className="hero ">
