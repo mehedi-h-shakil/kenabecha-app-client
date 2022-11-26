@@ -13,7 +13,7 @@ const useRole = (email) => {
         console.log(isRole);
         setIsRoleLoading(false);
       });
-  }, [email]);
+  }, [email, isRole]);
   return [isRole, isRoleLoading];
 };
 

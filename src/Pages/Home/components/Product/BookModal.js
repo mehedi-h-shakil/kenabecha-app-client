@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../../contexts/AuthProvider";
 import toast from "react-hot-toast";
 
-const axios = require("axios");
+// const axios = require("axios");
 
 const BookModal = ({ data }) => {
   const { user } = useContext(AuthContext);
@@ -30,6 +30,7 @@ const BookModal = ({ data }) => {
       location: meetLocation,
       contact: contact,
       image,
+      mobileId: data?._id,
     };
     console.log(name, email, product, price, meetLocation, contact, data?._id);
 
@@ -66,10 +67,13 @@ const BookModal = ({ data }) => {
       <div className="modal">
         <div className="modal-box">
           <h3 className="font-bold text-lg">
-            Congratulations random Internet user!
+            Please fillup with your information
           </h3>
           <div className="py-4">
-            <form onSubmit={handleBook} className="card-body w-96 lg:w-[450px]">
+            <form
+              onSubmit={handleBook}
+              className="card-body w-full lg:w-[450px]"
+            >
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Name</span>
@@ -127,6 +131,7 @@ const BookModal = ({ data }) => {
                 <input
                   type="text"
                   name="contact"
+                  required
                   placeholder="Your Contact Number"
                   className="input input-bordered"
                 />
@@ -138,6 +143,7 @@ const BookModal = ({ data }) => {
                 <input
                   type="text"
                   name="location"
+                  required
                   placeholder="Meeting Location"
                   className="input input-bordered"
                 />
@@ -150,6 +156,98 @@ const BookModal = ({ data }) => {
         </div>
       </div>
     </div>
+
+    // <>
+    //  <div className="modal-box">
+    //       <h3 className="font-bold text-lg">
+    //         Please fillup with your information
+    //       </h3>
+    //       <div className="py-4">
+    //         <form
+    //           onSubmit={handleBook}
+    //           className="card-body w-full lg:w-[450px]"
+    //         >
+    //           <div className="form-control">
+    //             <label className="label">
+    //               <span className="label-text">Name</span>
+    //             </label>
+    //             <input
+    //               type="text"
+    //               name="name"
+    //               disabled
+    //               defaultValue={user?.displayName}
+    //               className="input input-bordered"
+    //             />
+    //           </div>
+    //           <div className="form-control">
+    //             <label className="label">
+    //               <span className="label-text">Email</span>
+    //             </label>
+    //             <input
+    //               type="email"
+    //               name="email"
+    //               disabled
+    //               defaultValue={user?.email}
+    //               placeholder={user?.email}
+    //               className="input input-bordered"
+    //             />
+    //           </div>
+    //           <div className="form-control">
+    //             <label className="label">
+    //               <span className="label-text">Item Name</span>
+    //             </label>
+    //             <input
+    //               type="text"
+    //               name="itemName"
+    //               disabled
+    //               defaultValue={productName}
+    //               className="input input-bordered input-success"
+    //             />
+    //           </div>
+
+    //           <div className="form-control">
+    //             <label className="label">
+    //               <span className="label-text">Price</span>
+    //             </label>
+    //             <input
+    //               type="text"
+    //               name="price"
+    //               disabled
+    //               defaultValue={resalePrice}
+    //               className="input input-bordered"
+    //             />
+    //           </div>
+    //           <div className="form-control">
+    //             <label className="label">
+    //               <span className="label-text">Contact</span>
+    //             </label>
+    //             <input
+    //               type="text"
+    //               name="contact"
+    //               required
+    //               placeholder="Your Contact Number"
+    //               className="input input-bordered"
+    //             />
+    //           </div>
+    //           <div className="form-control">
+    //             <label className="label">
+    //               <span className="label-text">Location</span>
+    //             </label>
+    //             <input
+    //               type="text"
+    //               name="location"
+    //               required
+    //               placeholder="Meeting Location"
+    //               className="input input-bordered"
+    //             />
+    //           </div>
+    //           <button type="submit" className="btn">
+    //             Book
+    //           </button>
+    //         </form>
+    //       </div>
+    //     </div>
+    // </>
   );
 };
 

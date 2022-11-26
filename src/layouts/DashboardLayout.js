@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { Link, Outlet } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthProvider";
 import useRole from "../hooks/useRole";
+import Navbar from "../Pages/Shared/Navbar/Navbar";
 
 const DashboardLayout = () => {
   const { user } = useContext(AuthContext);
@@ -9,9 +10,8 @@ const DashboardLayout = () => {
   console.log(isRole);
   return (
     <div>
-      <div className="text-4xl flex justify-center">
-        <h2>Welcome to Dashboard</h2>
-      </div>
+      <Navbar />
+
       <div className="drawer drawer-mobile">
         <input
           id="dashboard-drawer"
@@ -22,7 +22,7 @@ const DashboardLayout = () => {
         <div className="drawer-content ">
           <Outlet></Outlet>
         </div>
-        <div className="drawer-side ">
+        <div className="drawer-side bg-base-100">
           <label htmlFor="dashboard-drawer" className="drawer-overlay"></label>
           <ul className="menu p-4 w-80 text-base-content">
             <li>
