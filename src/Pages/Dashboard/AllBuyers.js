@@ -11,13 +11,13 @@ const AllBuyers = () => {
   } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/buyers");
+      const res = await fetch("https://kenabecha-server.vercel.app/buyers");
       const data = await res.json();
       return data;
     },
   });
   // useEffect(() => {
-  //   fetch("http://localhost:5000/dashboard/users/buyers")
+  //   fetch("https://kenabecha-server.vercel.app/dashboard/users/buyers")
   //     .then((res) => res.json())
   //     .then((data) => {
   //       console.log(data);
@@ -28,7 +28,7 @@ const AllBuyers = () => {
   const handleDelete = (productId) => {
     const id = productId;
     // console.log(id);
-    fetch(`http://localhost:5000/buyers`, {
+    fetch(`https://kenabecha-server.vercel.app/buyers`, {
       method: "DELETE",
       headers: {
         "content-type": "application/json",

@@ -11,14 +11,14 @@ const AllSellers = () => {
   } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/sellers");
+      const res = await fetch("https://kenabecha-server.vercel.app/sellers");
       const data = await res.json();
       return data;
     },
   });
 
   const handleVerify = (email) => {
-    fetch("http://localhost:5000/sellers", {
+    fetch("https://kenabecha-server.vercel.app/sellers", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -33,7 +33,7 @@ const AllSellers = () => {
 
   const handleDelete = (productId) => {
     const id = productId;
-    fetch(`http://localhost:5000/sellers`, {
+    fetch(`https://kenabecha-server.vercel.app/sellers`, {
       method: "DELETE",
       headers: {
         "content-type": "application/json",

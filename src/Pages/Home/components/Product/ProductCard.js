@@ -22,7 +22,7 @@ const ProductCard = ({ mobile }) => {
       user: user?.email,
       id,
     };
-    fetch("http://localhost:5000/wishlist", {
+    fetch("https://kenabecha-server.vercel.app/wishlist", {
       method: "POST",
       headers: {
         "content-type": "application/json",

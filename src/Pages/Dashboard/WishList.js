@@ -8,7 +8,9 @@ const WishList = () => {
   const { data: wishlists, refetch } = useQuery({
     queryKey: ["wishlist"],
     queryFn: async () => {
-      const res = await fetch(`http://localhost:5000/wishlist/${user?.email}`);
+      const res = await fetch(
+        `https://kenabecha-server.vercel.app/wishlist/${user?.email}`
+      );
       const data = await res.json();
       return data;
     },
@@ -18,7 +20,7 @@ const WishList = () => {
 
   const handleDelete = (id) => {
     // console.log(id);
-    fetch("http://localhost:5000/wishlist", {
+    fetch("https://kenabecha-server.vercel.app/wishlist", {
       method: "DELETE",
       headers: {
         "content-type": "application/json",

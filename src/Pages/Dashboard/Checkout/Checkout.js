@@ -15,7 +15,7 @@ const Checkout = ({ paymentData }) => {
 
   useEffect(() => {
     // Create PaymentIntent as soon as the page loads
-    fetch("http://localhost:5000/create-payment-intent", {
+    fetch("https://kenabecha-server.vercel.app/create-payment-intent", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -85,7 +85,7 @@ const Checkout = ({ paymentData }) => {
         buyerName,
         orderId: mobileId,
       };
-      fetch("http://localhost:5000/payments", {
+      fetch("https://kenabecha-server.vercel.app/payments", {
         method: "POST",
         headers: {
           "content-type": "application/json",

@@ -51,7 +51,9 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/categories/${params.name}`),
+          fetch(
+            `https://kenabecha-server.vercel.app/categories/${params.name}`
+          ),
       },
       {
         path: "/mobile/:id",
@@ -61,7 +63,7 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/mobile/${params.id}`),
+          fetch(`https://kenabecha-server.vercel.app/mobile/${params.id}`),
       },
     ],
   },
@@ -89,7 +91,7 @@ const router = createBrowserRouter([
       // {
       //   path: "/dashboard/dashboard/wishlist/:id",
       //   loader: ({ params }) =>
-      //     fetch(`http://localhost:5000/wishlist/${params.id}`),
+      //     fetch(`https://kenabecha-server.vercel.app/wishlist/${params.id}`),
       //   element: (
       //     <BuyerRoute>
       //       <WishList />
@@ -131,7 +133,7 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/payment/:id",
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/bookings/${params.id}`),
+          fetch(`https://kenabecha-server.vercel.app/bookings/${params.id}`),
         element: (
           <BuyerRoute>
             <Payment />,

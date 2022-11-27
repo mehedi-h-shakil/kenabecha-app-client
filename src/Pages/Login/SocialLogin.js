@@ -30,7 +30,7 @@ const SocialLogin = ({ setSignupError }) => {
   const saveUser = (email, name, role) => {
     const user = { email: email, name: name, role: role };
     // console.log(user);
-    fetch("http://localhost:5000/users", {
+    fetch("https://kenabecha-server.vercel.app/users", {
       method: "POST",
       headers: {
         "content-type": "application/json",

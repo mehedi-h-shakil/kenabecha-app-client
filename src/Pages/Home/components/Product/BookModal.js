@@ -35,14 +35,14 @@ const BookModal = ({ data }) => {
     // console.log(name, email, product, price, meetLocation, contact, data?._id);
 
     // axios
-    //   .post(`http://localhost:5000/bookings/${data?._id}`, bookedData)
+    //   .post(`https://kenabecha-server.vercel.app/bookings/${data?._id}`, bookedData)
     //   .then((data) => {
     //     console.log(data);
     //   })
     //   .catch((err) => {
     //     console.log(err);
     //   });
-    fetch(`http://localhost:5000/bookings/${data?._id}`, {
+    fetch(`https://kenabecha-server.vercel.app/bookings/${data?._id}`, {
       method: "POST",
       headers: {
         "content-type": "application/json",

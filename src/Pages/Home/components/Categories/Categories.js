@@ -6,7 +6,7 @@ const Categories = () => {
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
-    Axios.get("http://localhost:5000/categories").then((res) =>
+    Axios.get("https://kenabecha-server.vercel.app/categories").then((res) =>
       setCategories(res.data)
     );
   }, []);

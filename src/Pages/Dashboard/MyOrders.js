@@ -9,14 +9,16 @@ const MyOrders = () => {
   const { data: orders, refetch } = useQuery({
     queryKey: ["orders"],
     queryFn: async () => {
-      const res = await fetch(`http://localhost:5000/orders/${user?.email}`);
+      const res = await fetch(
+        `https://kenabecha-server.vercel.app/orders/${user?.email}`
+      );
       const data = await res.json();
       return data;
     },
   });
 
   const handleDelete = (id) => {
-    fetch("http://localhost:5000/orders", {
+    fetch("https://kenabecha-server.vercel.app/orders", {
       method: "DELETE",
       headers: {
         "content-type": "application/json",

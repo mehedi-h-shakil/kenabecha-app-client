@@ -15,7 +15,7 @@ const MyProducts = () => {
     queryKey: ["products"],
     queryFn: async () => {
       const res = await fetch(
-        `http://localhost:5000/myProducts/${user?.email}`
+        `https://kenabecha-server.vercel.app/myProducts/${user?.email}`
       );
       const data = await res.json();
       return data;
@@ -25,7 +25,7 @@ const MyProducts = () => {
   const handleDelete = (productId) => {
     const id = productId;
     // console.log(id);
-    fetch(`http://localhost:5000/myProducts`, {
+    fetch(`https://kenabecha-server.vercel.app/myProducts`, {
       method: "DELETE",
       headers: {
         "content-type": "application/json",
@@ -42,7 +42,7 @@ const MyProducts = () => {
   // const { data: ads } = useQuery({
   //   queryKey: ["ads"],
   //   queryFn: async (id) => {
-  //     const res = await fetch(`http://localhost:5000/advertise`);
+  //     const res = await fetch(`https://kenabecha-server.vercel.app/advertise`);
   //     const data = await res.json();
   //     return data;
   //   },
@@ -55,7 +55,7 @@ const MyProducts = () => {
       id,
       date: date,
     };
-    fetch("http://localhost:5000/advertise", {
+    fetch("https://kenabecha-server.vercel.app/advertise", {
       method: "POST",
       headers: {
         "content-type": "application/json",
