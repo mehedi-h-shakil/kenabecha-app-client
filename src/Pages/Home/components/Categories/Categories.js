@@ -1,21 +1,19 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import CategoryCard from "./CategoryCard";
-import { useQuery } from "@tanstack/react-query";
-import Spinner from "../Spinner/Spinner";
+import Axios from "axios";
 
 const Categories = () => {
-  const { data: categories, isLoading } = useQuery({
-    queryKey: ["categories"],
-    queryFn: async () => {
-      const res = await fetch("http://localhost:5000/categories");
-      const data = await res.json();
-      return data;
-    },
-  });
+  const [categories, setCategories] = useState([]);
 
-  if (isLoading) {
-    return <Spinner />;
-  }
+  useEffect(() => {
+    Axios.get("http://localhost:5000/categories").then((res) =>
+      setCategories(res.data)
+    );
+  }, []);
+
+  // if (isLoading) {
+  //   return <Spinner />;
+  // }
   return (
     <div className="w-9/12 mx-auto my-20">
       <h2 className="text-3xl font-bold py-10">Categories</h2>

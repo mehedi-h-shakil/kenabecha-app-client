@@ -1,12 +1,14 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../contexts/AuthProvider";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import SmallSpinner from "../Home/components/Spinner/SmallSpiner";
 
 const AddAProduct = () => {
   const { user } = useContext(AuthContext);
   const { register, handleSubmit } = useForm();
+  const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
 
@@ -19,7 +21,7 @@ const AddAProduct = () => {
     formData.append("image", image);
 
     const url = process.env.REACT_APP_IMGBB_KEY;
-
+    setLoading(true);
     fetch(url, {
       method: "POST",
       body: formData,
@@ -61,8 +63,13 @@ const AddAProduct = () => {
         // console.log(data);
         toast.success("Product added successfully.");
         navigate("/dashboard/myProducts");
+        setLoading(false);
       });
   };
+
+  // if (loading) {
+  //   return <Spinner />;
+  // }
   return (
     <div>
       <form
@@ -77,12 +84,13 @@ const AddAProduct = () => {
             <select
               {...register("company")}
               name="company"
+              required
               placeholder="Phone Company"
               className="select select-success w-full max-w-xs"
             >
               <option value="Apple">Apple</option>
               <option value="Samsung">Samsung</option>
-              <option value="Xioami">Xioami</option>
+              <option value="Xiaomi">Xiaomi</option>
             </select>
           </div>
           <div className="form-control">
@@ -93,6 +101,7 @@ const AddAProduct = () => {
               {...register("name")}
               type="text"
               name="name"
+              required
               placeholder="Product Name"
               className="input input-bordered"
             />
@@ -106,6 +115,7 @@ const AddAProduct = () => {
           <input
             {...register("resalePrice")}
             type="text"
+            required
             name="resalePrice"
             placeholder="Resale Price"
             className="input input-bordered"
@@ -119,6 +129,7 @@ const AddAProduct = () => {
             {...register("image")}
             type="file"
             name="image"
+            required
             accept="image/*"
             placeholder="Mobile Photo"
             className="file-input file-input-bordered file-input-success w-full "
@@ -131,6 +142,7 @@ const AddAProduct = () => {
           <select
             {...register("condition")}
             name="conditon"
+            required
             placeholder="Conditon"
             className="select select-success w-full "
           >
@@ -148,6 +160,7 @@ const AddAProduct = () => {
             {...register("number")}
             type="text"
             name="number"
+            required
             placeholder="Mobile Number"
             className="input input-bordered"
           />
@@ -160,6 +173,7 @@ const AddAProduct = () => {
             {...register("location")}
             type="text"
             name="location"
+            required
             placeholder="Your Location"
             className="input input-bordered"
           />
@@ -172,6 +186,7 @@ const AddAProduct = () => {
             {...register("description")}
             type="text"
             name="description"
+            required
             placeholder="Description"
             className="textarea textarea-bordered"
           />
@@ -185,6 +200,7 @@ const AddAProduct = () => {
               {...register("broughtPrice")}
               type="text"
               name="broughtPrice"
+              required
               placeholder="Brought Price"
               className="input input-bordered w-full"
             />
@@ -197,6 +213,7 @@ const AddAProduct = () => {
               {...register("purchaseYear")}
               type="text"
               name="purchaseYear"
+              required
               placeholder="Brought Price"
               className="input input-bordered w-full"
             />
@@ -209,13 +226,16 @@ const AddAProduct = () => {
               {...register("used")}
               type="text"
               name="used"
+              required
               placeholder="Used Time"
               className="input input-bordered w-full"
             />
           </div>
         </div>
         <div className="mt-2 flex justify-center">
-          <button className="btn btn-success w-full">Submit</button>
+          <button className="btn btn-success w-full">
+            {loading ? <SmallSpinner /> : "Submit"}
+          </button>
         </div>
       </form>
     </div>

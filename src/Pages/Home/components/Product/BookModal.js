@@ -60,6 +60,7 @@ const BookModal = ({ data }) => {
         //   toast.error("This is item is booked already.");
         //   return;
         // }
+
         toast.success("Item is Booked");
         navigate("/dashboard/dashboard/myOrders");
       });
@@ -69,7 +70,13 @@ const BookModal = ({ data }) => {
       {/* Put this part before </body> tag */}
       <input type="checkbox" id="my-modal" className="modal-toggle" />
       <div className="modal">
-        <div className="modal-box">
+        <div className="modal-box relative">
+          <label
+            htmlFor="my-modal"
+            className="btn btn-sm btn-circle absolute right-2 top-2"
+          >
+            ✕
+          </label>
           <h3 className="font-bold text-lg">
             Please fillup with your information
           </h3>

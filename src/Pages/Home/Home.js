@@ -9,7 +9,7 @@ import Status from "./components/Status/Status";
 import Testomonial from "./components/Testomonial/Testomonial";
 
 const Home = () => {
-  const { data: ads } = useQuery({
+  const { data: ads = [] } = useQuery({
     queryKey: ["advertises"],
     queryFn: async () => {
       const res = await fetch("http://localhost:5000/advertise");
@@ -24,7 +24,7 @@ const Home = () => {
     <>
       <Banner />
       <Categories />
-      <Advertise ads={ads} />
+      {ads.length > 0 && <Advertise ads={ads} />}
       <Status />
       <Testomonial />
       <Contact />

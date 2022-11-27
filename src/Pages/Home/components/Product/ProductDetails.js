@@ -1,6 +1,7 @@
 import React from "react";
 import { useLoaderData } from "react-router-dom";
 import BookModal from "./BookModal";
+import { GoVerified } from "react-icons/go";
 
 const ProductDetails = () => {
   const data = useLoaderData();
@@ -28,8 +29,11 @@ const ProductDetails = () => {
           <p className="text-xl mt-5">Used: {used} years</p>
           <p className="text-xl mt-5">Location: {location}</p>
           <p className="text-xl mt-5">Posted Time: {data?.date}</p>
-          <h2 className="text-2xl font-semibold mt-5">
-            Seller Name: {sellerName}
+          <h2 className="text-2xl font-semibold mt-5 flex items-center gap-4">
+            Seller Name: {sellerName}{" "}
+            <span>
+              {data?.verified && <GoVerified className="text-blue-500" />}
+            </span>
           </h2>
         </div>
         <label htmlFor="my-modal" className="btn btn-success mt-20">

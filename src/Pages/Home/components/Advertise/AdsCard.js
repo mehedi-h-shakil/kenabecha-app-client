@@ -1,4 +1,5 @@
 import React from "react";
+import { GoVerified } from "react-icons/go";
 
 const AdsCard = ({ ad, i }) => {
   // console.log(ad.result);
@@ -19,8 +20,11 @@ const AdsCard = ({ ad, i }) => {
       </div>
       <p className="dark:text-gray-100 py-1">Price: {ad?.result.resalePrice}</p>
       <p className="dark:text-gray-100 py-1">Location: {ad?.result.location}</p>
-      <p className="dark:text-gray-100 text-xl font-semibold py-2">
-        Seller: {ad?.result.sellerName}
+      <p className="dark:text-gray-100 text-xl font-semibold py-2 flex items-center gap-4">
+        Seller: {ad?.result.sellerName}{" "}
+        <span>
+          {ad?.result.verified && <GoVerified className="text-blue-500" />}
+        </span>
       </p>
     </div>
   );
