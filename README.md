@@ -1,70 +1,60 @@
-# Getting Started with Create React App
+# KenaBecha App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was developed by Mehedi Hasan Shakil
 
-## Available Scripts
+## Live Project
 
-In the project directory, you can run:
+Open [https://kenabecha-5477e.web.app/](https://kenabecha-5477e.web.app/) to view it in your browser.
 
-### `npm start`
+## Data Server
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+<!-- Open [https://speedy-service-review-server.vercel.app/](https://speedy-service-review-server.vercel.app/) to view server in your browser. -->
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Admin Acess
 
-### `npm test`
+Email : abc@abc.com
+Password : 123456
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Features
 
-### `npm run build`
+- Responsive website for mobile and desktop
+- minimalist design for user experience
+- User Authentication
+- Project completed using React JS
+- Used Backend Server
+- Payment Gateway
+- Admin/Buyer/Seller Route
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Tools
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- React JS
+- Node JS
+- Express
+- Mongo DB
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Frameworks
 
-### `npm run eject`
+- Tailwind CSS
+- DaisyUI
+- MambaUI
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## React Packages
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- React App
+- React Router Dom
+- React Icons
+- React Hot Toast
+- Firebase
+- React Query
+- React Stripe
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Project Overview
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- I have build this site to sell used products. Here user have two roles (Buyer/Seller).
+- Buyer can look for their desired product and can book the product or can add to their wishlist.
+- User can see their booked products in the dashboard. They can buy their booked product if they want.
+- Seller can add post about their product from dashboard.
+- Seller can see their posted product from dashboard/My products.
+- Seller can delete the product if they like
+- Seller can advertise about their product. It will come up in the Home Page,
+- Admin can manage buyer and seller
