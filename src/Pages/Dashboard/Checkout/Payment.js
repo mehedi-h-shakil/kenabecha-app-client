@@ -4,13 +4,10 @@ import React from "react";
 import { useLoaderData } from "react-router-dom";
 import CheckoutForm from "./Checkout";
 
-const stripePromise = loadStripe(
-  "pk_test_51M66MUG6ZZcJX2lVD7SvjmmS7ODBEOH4YpL3LzyZmu72jlt2nGk1OZmOOmNoT4cgcznf3bYqHZ9vHxsXIXw1PWPf00m3hltdhq"
-);
+const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PK);
 
 const Payment = () => {
   const paymentData = useLoaderData();
-  console.log(paymentData);
 
   // const { price, buyerName, buyerEmail } = paymentData;
 

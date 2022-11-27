@@ -49,13 +49,17 @@ const BookModal = ({ data }) => {
       },
       body: JSON.stringify(bookedData),
     })
-      .then((res) => res.json())
+      .then((res) => {
+        // setLoading(true);
+        res.json();
+      })
       .then((data) => {
         // console.log(data);
-        if (data.matchedCount === 1) {
-          toast.error("This is item is booked alreay.");
-          return;
-        }
+        // setLoading(false);
+        // if (data.matchedCount === 1) {
+        //   toast.error("This is item is booked already.");
+        //   return;
+        // }
         toast.success("Item is Booked");
         navigate("/dashboard/dashboard/myOrders");
       });

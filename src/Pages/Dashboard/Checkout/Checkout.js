@@ -11,7 +11,7 @@ const Checkout = ({ paymentData }) => {
   const [transactionId, setTransactionId] = useState("");
   const [clientSecret, setClientSecret] = useState("");
 
-  const { price, buyerName, buyerEmail, _id, mobileId } = paymentData;
+  const { price, buyerName, buyerEmail, mobileId } = paymentData;
 
   useEffect(() => {
     // Create PaymentIntent as soon as the page loads

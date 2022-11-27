@@ -21,18 +21,22 @@ const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   const createUser = (email, password) => {
+    setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
   };
 
   const login = (email, password) => {
+    setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
 
   const googleSignIn = () => {
+    setLoading(true);
     return signInWithPopup(auth, googleProvider);
   };
 
   const updateUserProfile = (name, imgae) => {
+    setLoading(true);
     return updateProfile(auth.currentUser, {
       displayName: name,
       photoURL: imgae,
@@ -40,6 +44,7 @@ const AuthProvider = ({ children }) => {
   };
 
   const logout = () => {
+    setLoading(true);
     return signOut(auth);
   };
 

@@ -5,6 +5,7 @@ import { AuthContext } from "../../contexts/AuthProvider";
 import toast from "react-hot-toast";
 import useToken from "../../hooks/useToken";
 import SocialLogin from "./SocialLogin";
+import SmallSpiner from "../Home/components/Spinner/SmallSpiner";
 const Signup = () => {
   const {
     register,
@@ -12,7 +13,7 @@ const Signup = () => {
     formState: { errors },
   } = useForm();
 
-  const { createUser, updateUserProfile } = useContext(AuthContext);
+  const { createUser, updateUserProfile, loading } = useContext(AuthContext);
 
   const [createUserEmail, setCreatedUserEmail] = useState("");
   const [token] = useToken(createUserEmail);
@@ -32,8 +33,7 @@ const Signup = () => {
     const formData = new FormData();
     formData.append("image", image);
 
-    const url = `https://api.imgbb.com/1/upload?expiration=600&key=f06ccb150c5df3e1705f9b6bc41df79b`;
-    // console.log(url);
+    const url = process.env.REACT_APP_IMGBB_KEY;
 
     fetch(url, {
       method: "POST",
@@ -43,7 +43,6 @@ const Signup = () => {
       .then((imageData) => {
         // console.log(imageData.data.display_url);
         createUser(data.email, data.password).then((result) => {
-          console.log(result);
           updateUserProfile(data.name, imageData.data.display_url).then(() => {
             saveUser(data.email, data.name, data.role);
             toast.success("User created successfully.");
@@ -158,7 +157,7 @@ const Signup = () => {
                 type="submit"
                 className="btn btn-success text-black hover:text-white"
               >
-                Sign Up
+                {loading ? <SmallSpiner /> : "Sign Up"}
               </button>
             </div>
             <div>

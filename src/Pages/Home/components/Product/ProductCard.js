@@ -14,6 +14,7 @@ const ProductCard = ({ mobile }) => {
     image,
     location,
     sellerName,
+    paid,
   } = mobile;
 
   const handleWishList = (id) => {
@@ -36,7 +37,7 @@ const ProductCard = ({ mobile }) => {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         <div>
           <figure>
-            <img src={image} alt="Movie" className="" />
+            <img src={image} className="h-[500px] p-5" alt="Movie" />
           </figure>
         </div>
         <div className="card-body">
@@ -49,17 +50,22 @@ const ProductCard = ({ mobile }) => {
           <h2 className="font-semibold">Sellers Name: {sellerName}</h2>
           <div className="flex gap-5">
             <div className="card-actions ">
-              <Link to={`/mobile/${_id}`}>
-                <button className="btn btn-primary">Details</button>
-              </Link>
+              {!paid && (
+                <Link to={`/mobile/${_id}`}>
+                  <button className="btn btn-primary">Details</button>
+                </Link>
+              )}
+              {paid && <span className="btn btn-success">Sold</span>}
             </div>
             <div className="card-actions ">
-              <button
-                onClick={() => handleWishList(_id)}
-                className="btn btn-primary"
-              >
-                WishList
-              </button>
+              {!paid && (
+                <button
+                  onClick={() => handleWishList(_id)}
+                  className="btn btn-primary"
+                >
+                  WishList
+                </button>
+              )}
             </div>
           </div>
         </div>

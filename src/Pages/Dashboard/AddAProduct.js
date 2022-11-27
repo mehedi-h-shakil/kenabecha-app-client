@@ -1,30 +1,24 @@
 import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../contexts/AuthProvider";
-import { useQuery } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
 const AddAProduct = () => {
   const { user } = useContext(AuthContext);
   const { register, handleSubmit } = useForm();
-  // const { data, isLoading } = useQuery();
+
   const navigate = useNavigate();
 
   const date = new Date();
 
   const onSubmit = (data) => {
-    // console.log(data);
-    // console.log(date);
-
     const image = data.image[0];
-    // console.log(image);
 
     const formData = new FormData();
     formData.append("image", image);
 
-    const url = `https://api.imgbb.com/1/upload?expiration=600&key=f06ccb150c5df3e1705f9b6bc41df79b`;
-    // console.log(url);
+    const url = process.env.REACT_APP_IMGBB_KEY;
 
     fetch(url, {
       method: "POST",

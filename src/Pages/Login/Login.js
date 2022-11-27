@@ -10,7 +10,7 @@ const Login = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    // formState: { errors },
   } = useForm();
 
   const { login } = useContext(AuthContext);
