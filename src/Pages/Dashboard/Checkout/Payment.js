@@ -10,7 +10,7 @@ const stripePromise = loadStripe(
 
 const Payment = () => {
   const paymentData = useLoaderData();
-  // console.log(paymentData);
+  console.log(paymentData);
 
   // const { price, buyerName, buyerEmail } = paymentData;
 

@@ -83,7 +83,7 @@ const Checkout = ({ paymentData }) => {
         transactionId: paymentIntent.id,
         buyerEmail,
         buyerName,
-        orderId: _id,
+        orderId: mobileId,
       };
       fetch("http://localhost:5000/payments", {
         method: "POST",

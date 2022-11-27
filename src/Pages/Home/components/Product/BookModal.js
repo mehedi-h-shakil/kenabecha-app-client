@@ -43,7 +43,7 @@ const BookModal = ({ data }) => {
     //     console.log(err);
     //   });
     fetch(`http://localhost:5000/bookings/${data?._id}`, {
-      method: "PUT",
+      method: "POST",
       headers: {
         "content-type": "application/json",
       },

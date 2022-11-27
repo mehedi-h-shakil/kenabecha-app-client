@@ -93,11 +93,16 @@ const MyProducts = () => {
                 <th>{index + 1}</th>
                 <td>{product?.company}</td>
                 <td>{product?.productName}</td>
-                <td>Available</td>
+                <td>
+                  {!product?.paid && <span>Available</span>}
+                  {product?.paid && (
+                    <span className="text-green-500">Sold</span>
+                  )}
+                </td>
                 <td>
                   {/* {ads?.map((ad) => console.log(ad.result))} */}
 
-                  {!product?.advertise && (
+                  {!product?.advertise && !product?.paid && (
                     <button
                       onClick={() => handleAds(product?._id)}
                       className="btn btn-success"
@@ -109,6 +114,8 @@ const MyProducts = () => {
                   {product?.advertise && (
                     <span className="text-green-500">Advertised</span>
                   )}
+
+                  {product.paid && <span className="text-green-500">Sold</span>}
                 </td>
                 <td>
                   <button
