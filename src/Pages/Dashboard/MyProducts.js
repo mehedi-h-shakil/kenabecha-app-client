@@ -39,13 +39,28 @@ const MyProducts = () => {
       });
   };
 
+  // const { data: ads } = useQuery({
+  //   queryKey: ["ads"],
+  //   queryFn: async (id) => {
+  //     const res = await fetch(`http://localhost:5000/advertise`);
+  //     const data = await res.json();
+  //     return data;
+  //   },
+  // });
+
+  // console.log(ads);
+
   const handleAds = (id) => {
+    const adsData = {
+      id,
+      date: date,
+    };
     fetch("http://localhost:5000/advertise", {
       method: "POST",
       headers: {
         "content-type": "application/json",
       },
-      body: JSON.stringify({ id, date }),
+      body: JSON.stringify(adsData),
     })
       .then((res) => res.json())
       .then((data) => {
@@ -80,12 +95,20 @@ const MyProducts = () => {
                 <td>{product?.productName}</td>
                 <td>Available</td>
                 <td>
-                  <button
-                    onClick={() => handleAds(product?._id)}
-                    className="btn btn-success"
-                  >
-                    Add
-                  </button>
+                  {/* {ads?.map((ad) => console.log(ad.result))} */}
+
+                  {!product?.advertise && (
+                    <button
+                      onClick={() => handleAds(product?._id)}
+                      className="btn btn-success"
+                    >
+                      Add
+                    </button>
+                  )}
+
+                  {product?.advertise && (
+                    <span className="text-green-500">Advertised</span>
+                  )}
                 </td>
                 <td>
                   <button
