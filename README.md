@@ -10,10 +10,14 @@ Open [https://kenabecha-5477e.web.app/](https://kenabecha-5477e.web.app/) to vie
 
 <!-- Open [https://speedy-service-review-server.vercel.app/](https://speedy-service-review-server.vercel.app/) to view server in your browser. -->
 
-## Admin Acess
+## Admin Access
 
 Email : abc@abc.com
 Password : 123456
+
+## Server Repo
+
+https://github.com/mehedi-h-shakil/kenabecha-app-server
 
 ## Features
 
